@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            background: #eee;
+        }
+        @font-face {
+            font-family: "GenZen";
+            src: url(GenZen.ttf);
+        }
+        * {
+            font-family: "GenZen";
+        }
+        canvas {
+            width: 800px;
+            height: 600px;
+        }
+        #world {
+            margin: 20px;
+            border: #000 2px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            width: 1066px;
+            height: 600px;
+        }
+    </style>
+    <title>Emoji Physics</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>歌詞</td>
+            <td>
+                <textarea id="lyric-textarea" rows="12" cols="40"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>間隔(ミリ秒)</td>
+            <td>
+                <input type="number" name="timeout" id="timeout-input" value="320">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button id="add-button">追加</button>
+                <button id="clear-button">床を消す</button>
+            </td>
+        </tr>
+    </table>
+    <div id="world"></div>
+
+    <script src="lib/opencv.js"></script>
+    <script src="lib/matter.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
