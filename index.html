@@ -9,6 +9,8 @@
             height: 100%;
             width: 100%;
             background: #eee;
+            counter-reset: howto-p 0;
+            overflow-x: hidden;
         }
         @font-face {
             font-family: "GenZen";
@@ -16,6 +18,9 @@
         }
         * {
             font-family: "GenZen";
+        }
+        h2, p {
+            margin: 2px;
         }
         canvas {
             width: 800px;
@@ -31,6 +36,13 @@
             width: 1066px;
             height: 600px;
         }
+        #howto p::before {
+            counter-increment: howto-p 1;
+            content: counter(howto-p) ". ";
+        }
+        #note p::before {
+            content: "・ ";
+        }
     </style>
     <title>Emoji Physics</title>
 </head>
@@ -39,23 +51,51 @@
         <tr>
             <td>歌詞</td>
             <td>
-                <textarea id="lyric-textarea" rows="12" cols="40"></textarea>
+                <textarea id="lyric-textarea" rows="12" cols="40">同化している。
+雨下の産穢も、
+神々に祈るも、
+苦しい、
+自らと糸を、
+止め処なく、
+伝えるの。
+手が凍え、
+宵も醒めないや。
+何れ此れも嵩増しで。
+執れぬ　迷いは己が内。
+空呆で弔ったった所以は、
+「奇を衒う為なのね。」</textarea>
+                <input type="button" value="クリア" onclick="document.getElementById('lyric-textarea').value = '';">
             </td>
         </tr>
         <tr>
             <td>間隔(ミリ秒)</td>
             <td>
-                <input type="number" name="timeout" id="timeout-input" value="320">
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button id="add-button">追加</button>
-                <button id="clear-button">床を消す</button>
+                <input type="number" name="timeout" id="timeout-input" value="340">
             </td>
         </tr>
     </table>
+    <div id="howto">
+        <h2>使い方</h2>
+        <p>歌詞を入力</p>
+        <p>間隔を設定</p>
+        <p>追加ボタンを押す</p>
+    </div>
+    <div id="note">
+        <h2>注意点</h2>
+        <p>歌詞は改行毎に降ってきます。</p>
+        <p>入力された歌詞を最後列から描画します。</p>
+        <p>一度床を消すとリロードするまで戻りません。</p>
+        <p>原理上、黒背景に白文字を投影することはできません。</p>
+        <p>サイトだと、capcutとかで色反転できます。</p>
+    </div>
+    <div>
+        <h2>クレジット</h2>
+        <p><a href="https://youtu.be/7CUpc5K1li4" target="_blank" rel="noopener noreferrer">.. / 全てあなたの所為です。</a></p>
+        <p><a href="https://drive.google.com/drive/folders/19WidrJoCmI5qLJV-eR_ydURIwxB2-DSH" target="_blank" rel="noopener noreferrer">源全ゴシック</a></p>
+        <p><a href="https://github.com/yaegaki/emoji-physics" target="_blank" rel="noopener noreferrer">emoji-physics</a></p>
+    </div>
+    <button id="add-button">追加</button>
+    <button id="clear-button">床を消す</button>
     <div id="world"></div>
 
     <script src="lib/opencv.js"></script>
